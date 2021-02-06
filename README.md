@@ -4,7 +4,7 @@
 
 |        | 值   | 类型   | 备注          |
 | ------ | ---- | ------ | ------------- |
-| route  | \qr  |
+| route  | /qr  |
 | method | get  |
 | param  | text | String | maxlength=300 |
 
