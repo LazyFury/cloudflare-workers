@@ -1,3 +1,16 @@
+# Route
+
+[生成二维码 http://127.0.0.1:8787/qr](http://127.0.0.1:8787/qr)
+
+|        | 值   | 类型   | 备注          |
+| ------ | ---- | ------ | ------------- |
+| route  | \qr  |
+| method | get  |
+| param  | text | String | maxlength=300 |
+
+
+
+
 # 👷 `worker-template` Hello World
 
 A template for kick starting a Cloudflare worker project.
