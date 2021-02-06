@@ -1,0 +1,8 @@
+name = "qr-code-generator"
+type = "webpack"
+account_id = "a10d6d7f5a49e93d31cbc334e4fb96f3"
+workers_dev = true
+route = "/qrcode"
+zone_id = ""
+webpack_config = "webpack.config.js"
+

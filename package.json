@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "qr-code-generator",
+  "version": "1.0.0",
+  "description": "A template for kick starting a Cloudflare Workers project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "suke <2568597007@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "webpack-cli": "^4.5.0"
+  },
+  "dependencies": {
+    "qr-image": "^3.2.0",
+    "qs": "^6.9.6",
+    "webpack": "^5.21.0"
+  }
+}
