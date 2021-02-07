@@ -3,7 +3,7 @@
   "name": "qr-code-generator",
   "version": "1.0.0",
   "description": "A template for kick starting a Cloudflare Workers project",
-  "main": "src/index.js",
+  "main": "./src/index.js",
   "scripts": {
     "dev": "wrangler dev",
     "depoly": "wrangler publish",
@@ -14,7 +14,11 @@
   "author": "suke <2568597007@qq.com>",
   "license": "MIT",
   "devDependencies": {
+    "@cloudflare/workers-types": "^2.1.0",
+    "@types/node": "^14.14.25",
     "prettier": "^1.18.2",
+    "ts-loader": "^8.0.15",
+    "typescript": "^4.1.3",
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
