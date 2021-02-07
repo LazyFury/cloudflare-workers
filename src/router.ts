@@ -1,21 +1,34 @@
 import { HttpError } from './error'
+import { HttpStatus } from './status'
 interface Handler {
   Methods: string
   URL: string
   HandleFunc: (request: Request) => Response
 }
+
+interface handlerMapInterface {
+  [key: string]: {
+    [key: string]: Handler
+  }
+}
 export class Router {
   handler: Handler[] = []
-  constructor() {}
-
-  makeKey(method: string, url: string) {
-    return `[${method.toUpperCase()}]:${url}`
+  constructor() {
+    this.addHandler({
+      Methods: 'GET',
+      URL: '/all',
+      HandleFunc: (request: Request): Response => {
+        return new HttpError({ msg: 'err', data: this.handlerMap }).response()
+      },
+    })
   }
 
-  get handlerMap(): { [key: string]: Handler } {
-    let obj: { [key: string]: Handler } = {}
+  get handlerMap(): handlerMapInterface {
+    let obj: handlerMapInterface = {}
     this.handler.forEach(h => {
-      obj[this.makeKey(h.Methods, h.URL)] = h
+      obj[h.URL] = {
+        [h.Methods]: h,
+      }
     })
     return obj
   }
@@ -23,11 +36,19 @@ export class Router {
   handleRequest(request: Request): Response {
     let method = request.method
     let path = new URL(request.url).pathname
-    let handler = this.handlerMap[this.makeKey(method, path)]
-    if (handler) {
-      return handler.HandleFunc(request)
+    let handlerGroup = this.handlerMap[path]
+    if (handlerGroup) {
+      let handler = handlerGroup[method]
+      if (handler) {
+        return handler.HandleFunc(request)
+      }
+      return new HttpError({ msg: 'method not allowed' }).response(
+        HttpStatus.MethodsNotAllowed,
+      )
     }
-    return new HttpError({ msg: 'err', data: this.handlerMap }).response()
+    return new HttpError({ msg: 'route not found' }).response(
+      HttpStatus.NotFound,
+    )
   }
 
   addHandler(handler: Handler) {
